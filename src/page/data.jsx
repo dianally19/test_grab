@@ -1,14 +1,52 @@
 import React, { Component } from 'react'
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBInput } from 'mdbreact';
-
+ 
 
 export default class data extends Component {
     state = {
         modal8: false,
         modal9: false,
         radio: 2,
-        quantity:0
+        quantity:0,
+        select:0,
+        index:0,
+        ids:[],
+        idss:0,
+        dataMakanan:[ {
+            ID:"IDMOG20200110103208012251",
+            name:"Original Gyudon Regular",
+            available:true,
+            priceInMinorUnit:33000,
+            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE/photos/9de0579c1b704ab5a60f23582c06c5fd_1583383517477776259.jpg",
+            description:"Our Signature Gyudon Made With 100% Us Premium Beef And Authentic Ingredients (Regular)"
+           
+        },
+        {
+            ID:"IDMOD20200303032336254677",
+            name:"Teriyaki Gyudon Regular",
+            available:true,
+            priceInMinorUnit:34000,
+            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JWA3JE2/photos/794df2f97ae5420ab83db59a1a41425a_1583383517689441362.jpg",
+            description:"Our Favorite Teriyaki Gyudon In Town Made With 100% Us Premium Beef And Authentic Ingredients (Regular)"
+        },
+        {
+            ID:"IDMOD20200303032336277837",
+            name:"Chicken Teriyaki Don Regular",
+            available:false,
+            priceInMinorUnit:27000,
+            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3KBBVXBA/photos/62e78b1cfe0f49679b09dca4217cc584_1583383517908984402.jpg",
+            description:"Nasi + Ayam Dengan Bumbu Teriyaki (Manis Gurih)"
+        },
+        {
+            ID:"IDMOD20200303032336277837",
+            name:"Original Gyudon Sambal Regular",
+            available:true,
+            priceInMinorUnit:36000,
+            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3KDCJCME/photos/6142c6aa70cf4f6682866c1cb50b0f0b_1583383518089819845.jpg",
+            description:"Nasi + Us Beef Dengan Bumbu Original (Gurih) + Sambal \u0026 Kremes"
+        }],
       }
+
 
       toggle = nr => () => {
         let modalNumber = 'modal' + nr
@@ -24,48 +62,12 @@ export default class data extends Component {
       }
 
 
+
+
     renderData = () => {
-
-    const dataMakanan= [
-        {
-            ID:"6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE",
-            name:"Original Gyudon Regular",
-            available:true,
-            priceInMinorUnit:3300000,
-            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE/photos/9de0579c1b704ab5a60f23582c06c5fd_1583383517477776259.jpg",
-            description:"Our Signature Gyudon Made With 100% Us Premium Beef And Authentic Ingredients (Regular)"
-        },
-        {
-            ID:"6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE",
-            name:"Original Gyudon Regular",
-            available:true,
-            priceInMinorUnit:3300000,
-            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE/photos/9de0579c1b704ab5a60f23582c06c5fd_1583383517477776259.jpg",
-            description:"Our Signature Gyudon Made With 100% Us Premium Beef And Authentic Ingredients (Regular)"
-        },
-        {
-            ID:"6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE",
-            name:"Original Gyudon Regular",
-            available:true,
-            priceInMinorUnit:3300000,
-            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE/photos/9de0579c1b704ab5a60f23582c06c5fd_1583383517477776259.jpg",
-            description:"Our Signature Gyudon Made With 100% Us Premium Beef And Authentic Ingredients (Regular)"
-        },
-        {
-            ID:"6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE",
-            name:"Original Gyudon Regular busuk",
-            available:true,
-            priceInMinorUnit:3300000,
-            imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE/photos/9de0579c1b704ab5a60f23582c06c5fd_1583383517477776259.jpg",
-            description:"Our Signature Gyudon Made With 100% Us Premium Beef And Authentic Ingredients (Regular)"
-        },
-
-    ]
-
-        return dataMakanan.map((val) => {
+        return this.state.dataMakanan.map((val) => {
             return (
                 <div className='col-md-4' style={{padding: '10px'}} onClick={this.toggle(8)}> 
-
                     <div className="row">
                         <div className="col-md-4 col-sm-4 col-lg-6">
                             <img src={val.imgHref} style={{ width: '100%'}}/>
@@ -76,42 +78,70 @@ export default class data extends Component {
                             <div style={{display: 'flex', width: '100%'}}>
                                 <p style={{fontSize:'10px'}}>{val.priceInMinorUnit}
                                 </p>
-                                <button style={{marginLeft: '80px'}}>+</button>
+                                <button className="button" onClick={() => this.setState({index: val.ID})}>+</button> 
+                               
                             </div>
                         </div>
                     </div>
-                    <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right">
-                        <MDBModalHeader toggle={this.toggle(8)}></MDBModalHeader>
-                        <MDBModalBody>
-                        <div className="row">
-                           <div className="col-md-4"> 
-                            <img src={val.imgHref} style={{ width: '100%'}}/>
-                            </div>
-                            <div className="col-md-6">{val.name}</div>
-                            <div className="col-md-2">{val.priceInMinorUnit}</div>
-                            <div style={{marginTop:"1px"}}>
-                                <input type="checkbox" name="vehicle1" defaultValue="sambel" />
-                                <label htmlFor="vehicle1"> Sambal</label><br/>
-                                <input type="checkbox" name="vehicle2" defaultValue="nasi" />
-                                <label htmlFor="vehicle3"> nasi</label>
-                            </div>
-                        </div>
-                        </MDBModalBody>
-                        <MDBModalFooter>
-                        <div style={{display:"flex"}}>
-                            <button onClick={() => this.setState({ quantity: this.state.quantity + 1})}>+</button> 
-                             {this.state.quantity} 
-                            <button onClick={() => this.setState({ quantity : this.state.quantity - 1})}>-</button>
-                            <br />
-                            <button onClick={()=>this.setState({showTransaction : true})}>Add to Basket 
-                             {this.state.quantity * val.priceInMinorUnit}</button>
-                            </div>
-                        </MDBModalFooter>
-                    </MDBModal>
                 </div>
             )
         })
     }
+
+    
+    renderModal = (idx) => {
+        return this.state.dataMakanan.find(value => value.ID === idx) && (
+            <MDBContainer>
+            <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="right">
+                     <MDBModalHeader toggle={this.toggle(8)}></MDBModalHeader>
+                     <MDBModalBody>
+                     <div className="row">
+                        <div className="col-md-4"> 
+                         <img src={this.state.dataMakanan.find(value => value.ID === idx).imgHref} style={{ width: '100%'}}/>
+                         </div>
+                         <div className="col-md-8 col-sm-4 col-lg-6">
+                         <div style={{fontSize:'12px'}}>{this.state.dataMakanan.find(value => value.ID === idx).name} {this.state.dataMakanan.find(value => value.ID === idx).priceInMinorUnit}</div>
+                         <div style={{fontSize:'10px'}}>{this.state.dataMakanan.find(value => value.ID === idx).description}</div>
+                         </div>
+                     </div>
+                     <hr />
+                     <div style={{marginTop:"1px"}}>
+                            <label><b>Topping</b></label><br/>
+                            <label class="container" >Ekstra Sambal
+                                <input type="checkbox" value="2000" name="ekstra"/>
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Ekstra Kremes
+                                <input type="checkbox" value="3000" name="ekstra1"/>
+                                <span class="checkmark"></span>
+                                </label>
+
+                     </div>
+                         <hr/>
+                         <div style={{marginTop:"1px"}}>
+                         <label><b>Special instructions</b> Optional
+                         <input type="checkbox" value="3000" name="ekstra"/>
+                           </label>
+                         </div>
+                     </MDBModalBody>
+                     
+                     <MDBModalFooter>
+                     <div style={{display:"flex"}}>
+                         <button className="buttonPlusMinus" onClick={() => this.setState({ quantity: this.state.quantity + 1})}>+</button> 
+                          <lable className="label">{this.state.quantity}</lable>
+                         <button className="buttonPlusMinus" onClick={() => this.setState({ quantity : this.state.quantity - 1})}>-</button>
+                         <br />
+                         <button className="buttonAdd" onClick={()=>this.setState({showTransaction : true})}>Add to Basket-
+                          {(this.state.quantity * this.state.dataMakanan[0].priceInMinorUnit)}</button>
+                         </div>
+                     </MDBModalFooter>
+                 </MDBModal>
+             </MDBContainer>
+        ) 
+    }
+        
+
+
     render() {
         return (
            <div className="container">
@@ -121,22 +151,7 @@ export default class data extends Component {
                </div>
 
                {/* BUAT RIGHT */}
-               <MDBContainer>
-     
-      <MDBBtn color="info" onClick={this.toggle(9)}>Bottom</MDBBtn>
-      <MDBModal isOpen={this.state.modal9} toggle={this.toggle(9)} fullHeight position="bottom">
-        <MDBModalHeader toggle={this.toggle(9)}>MDBModal title</MDBModalHeader>
-        <MDBModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-        </MDBModalBody>
-        <MDBModalFooter>
-          <MDBBtn color="secondary" onClick={this.toggle(9)}>Close</MDBBtn>
-          <MDBBtn color="primary">Save changes</MDBBtn>
-        </MDBModalFooter>
-      </MDBModal>
-    </MDBContainer>
+               {this.renderModal(this.state.index)}
            </div>
         )
     }
