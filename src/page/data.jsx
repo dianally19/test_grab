@@ -11,6 +11,7 @@ export default class data extends Component {
         select:0,
         index:0,
         ids:[],
+        checkedToping:new Map(),
         idss:0,
         dataMakanan:[ {
             ID:"IDMOG20200110103208012251",
@@ -61,6 +62,24 @@ export default class data extends Component {
         });
       }
 
+      handleClick = event => {
+        const { name, checked, value } = event.currentTarget
+        this.setState(prevState => ({ checkedToping: prevState.checkedToping.set(name, { checked, value }) }))
+
+        console.log(this.state.checkedToping)
+    }
+
+    getToppingTotalPrice = () => {
+        let totalPrice = 0
+
+        this.state.checkedToping.forEach(toping => {
+            if (toping.checked) {
+                totalPrice += parseInt(toping.value)
+            }
+        })
+
+        return totalPrice
+    }
 
 
 
@@ -108,15 +127,16 @@ export default class data extends Component {
                      <div style={{marginTop:"1px"}}>
                             <label><b>Topping</b></label><br/>
                             <label class="container" >Ekstra Sambal
-                                <input type="checkbox" value="2000" name="ekstra"/>
+                                <input type="checkbox" value="2000" name="ekstra" onClick={(e) => this.handleClick(e)}/>
                                 <span class="checkmark"></span>
                                 </label>
                                 <label class="container">Ekstra Kremes
-                                <input type="checkbox" value="3000" name="ekstra1"/>
+                                <input type="checkbox" value="3000" name="ekstra1" onClick={(e) => this.handleClick(e)}/>
                                 <span class="checkmark"></span>
                                 </label>
 
                      </div>
+
                          <hr/>
                          <div style={{marginTop:"1px"}}>
                          <label><b>Special instructions</b> Optional
@@ -132,7 +152,7 @@ export default class data extends Component {
                          <button className="buttonPlusMinus" onClick={() => this.setState({ quantity : this.state.quantity - 1})}>-</button>
                          <br />
                          <button className="buttonAdd" onClick={()=>this.setState({showTransaction : true})}>Add to Basket-
-                          {(this.state.quantity * this.state.dataMakanan[0].priceInMinorUnit)}</button>
+                          {(this.state.quantity * this.state.dataMakanan[0].priceInMinorUnit)+this.getToppingTotalPrice()}</button>
                          </div>
                      </MDBModalFooter>
                  </MDBModal>
@@ -152,6 +172,8 @@ export default class data extends Component {
 
                {/* BUAT RIGHT */}
                {this.renderModal(this.state.index)}
+               
+           {this.e}
            </div>
         )
     }
