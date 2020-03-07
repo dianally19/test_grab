@@ -37,7 +37,7 @@ export default class data extends Component {
         },
         {
             ID:"6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE",
-            name:"Original Gyudon Regular busuk",
+            name:"Original Gyudon Regular",
             available:true,
             priceInMinorUnit:3300000,
             imgHref:"https://d1sag4ddilekf6.cloudfront.net/item/6-CY4ANFTTN35VNA-CY6GLJ3JTUCXNE/photos/9de0579c1b704ab5a60f23582c06c5fd_1583383517477776259.jpg",
