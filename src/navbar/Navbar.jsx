@@ -24,7 +24,7 @@ render() {
       <MDBNavbar color="white" dark expand="md">
         <MDBNavbarBrand>
           <img className="LogoCss" src={Logo} width="100px" /> 
-          <input type="text" className="inputNavbar"/>
+          <input type="text" className="inputNavbar"  placeholder="Deliver to"/>
        </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -54,9 +54,9 @@ render() {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
-              
-            <button className="buttonShop">SHOP</button>
-              <button>Login</button>
+            <button id="close-image" className="buttonShop"><img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/38084/preview.svg" width="25px"/></button>
+                        
+              <button className="buttonShop">Login</button>
          
         
             </MDBNavItem>
