@@ -86,7 +86,7 @@ export default class data extends Component {
     renderData = () => {
         return this.state.dataMakanan.map((val) => {
             return (
-                <div className='col-md-4' style={{padding: '10px'}} onClick={this.toggle(8)}> 
+                <div className='col-md-4 static' onClick={this.toggle(8)}> 
                     <div className="row">
                         <div className="col-md-4 col-sm-4 col-lg-6">
                             <img src={val.imgHref} style={{ width: '100%'}}/>
@@ -125,22 +125,18 @@ export default class data extends Component {
                      </div>
                      <hr />
                      <div style={{marginTop:"1px"}}>
-                            <label><b>Topping</b></label><br/>
-                            <label class="container" >Ekstra Sambal
+                            <label><b>Topping</b></label>&nbsp;&nbsp;&nbsp;<label style={{fontSize:"12px"}}>Optional, max 2</label><br/>
                                 <input type="checkbox" value="2000" name="ekstra" onClick={(e) => this.handleClick(e)}/>
-                                <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Ekstra Kremes
-                                <input type="checkbox" value="3000" name="ekstra1" onClick={(e) => this.handleClick(e)}/>
-                                <span class="checkmark"></span>
-                                </label>
+                                    <label>Ekstra Sambal </label><br/><br/>
+                               <input type="checkbox" value="3000" name="ekstra1" onClick={(e) => this.handleClick(e)}/>
+                                    <label >Ekstra Kremes</label>
 
                      </div>
 
                          <hr/>
                          <div style={{marginTop:"1px"}}>
-                         <label><b>Special instructions</b> Optional
-                         <input type="checkbox" value="3000" name="ekstra"/>
+                         <label><b>Special instructions   </b> &nbsp;&nbsp;<label style={{fontSize:"12px"}}>Optional</label>
+                         <input type="text" name="optional" size="40"  placeholder="E.g. No onions please"/>
                            </label>
                          </div>
                      </MDBModalBody>
